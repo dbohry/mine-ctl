@@ -12,9 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class MineController {
 
-  @PostMapping
+  private static String scriptsDir = "/scripts";
+  private static String commandType = "sh";
+
+  @PostMapping("/restart")
   public ResponseEntity<Void> restart() throws IOException {
-    String[] cmd = {"sh", "restart.sh", "/"};
+    String[] cmd = {commandType, "restart.sh", scriptsDir};
+    Runtime.getRuntime().exec(cmd);
+    return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+  }
+
+  @PostMapping("/backup")
+  public ResponseEntity<Void> backup() throws IOException {
+    String[] cmd = {commandType, "backup.sh", scriptsDir};
     Runtime.getRuntime().exec(cmd);
     return ResponseEntity.status(HttpStatus.ACCEPTED).build();
   }
