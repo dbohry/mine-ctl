@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class MineController {
 
-  private static String scriptsDir = "/scripts";
+  private static String scriptsDir = "/";
   private static String commandType = "sh";
 
   @PostMapping("/restart")
